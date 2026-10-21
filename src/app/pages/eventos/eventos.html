@@ -1,0 +1,44 @@
+<!-- Aula 12
+Criando Formulário com ReactFormModule 
+20/10/26 -->
+
+<form [formGroup]="cadastro">
+    <div class="mb-3">
+        <label for="campoNome" class="form-label">
+            Nome:
+        </label>
+        <input type="text" formControlName="nome" class="form-control">
+
+        <!-- touched ou dirty -->
+        @if (cadastro.controls.nome.touched && cadastro.controls.nome.hasError('minlength')) {
+            <div style="color:red">
+                Nome dever ter pelo menos 3 caracteres!
+            </div>
+        }
+        @if (cadastro.controls.nome.touched && cadastro.controls.nome.hasError('required')) {
+            <div style="color:red">
+                Preenchimento obrigatório do Nome!
+            </div>
+        }
+    </div>
+    <div class="mb-3">
+        <label for="campoEmail" class="form-label">
+            E-mail:
+        </label>
+        <input type="email" formControlName="email" class="form-control">
+                @if (cadastro.controls.email.touched && cadastro.controls.email.hasError('email')) {
+            <div style="color:red">
+                O e-mail deve ser válido!
+            </div>
+        }
+        @if (cadastro.controls.email.touched && cadastro.controls.email.hasError('required')) {
+            <div style="color:red">
+                Preenchimento obrigatório do E-mail!
+            </div>
+        }
+    </div>
+
+    <div class="mb-3">
+        <button [disabled]="cadastro.invalid">Salvar</button>    
+    </div>
+</form>
