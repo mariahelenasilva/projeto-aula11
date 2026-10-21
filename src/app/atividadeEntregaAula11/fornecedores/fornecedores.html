@@ -1,0 +1,75 @@
+<div class="form-fornecedor">
+    <form #meuFormulario="ngForm" (ngSubmit)="salvar()">
+        <fieldset>
+            <legend>RazaoSocial</legend>
+            <div class="campo-fornecedor">
+            <input #campoRazaoSocial="ngModel" type="text" [(ngModel)]="razaoSocial" name="razaoSocial" 
+                required minlength="3" maxlength="100">
+            </div>
+            @if(campoRazaoSocial.invalid && campoRazaoSocial.touched){
+                <div>Campo Razão Social deve ser preenchido!</div>
+            }
+
+        </fieldset>
+        <fieldset>
+            <legend>CNPJ</legend>
+            <div class="campo-fornecedor">
+            <input #campoCNPJ="ngModel" type="text" [(ngModel)]="cnpj" name="cnpj" 
+                required minlength="18" maxlength="18">
+            </div>
+            @if(campoCNPJ.invalid && campoCNPJ.touched){
+                <div>Campo CNPJ deve ser preenchido!</div>
+            }
+
+        </fieldset>
+        <fieldset>
+            <legend>E-mail</legend>
+            <div class="campo-fornecedor">
+            <input #campoEmail="ngModel" type="email" [(ngModel)]="email" name="email" 
+                required minlength="3" maxlength="100">
+            </div>
+            @if(campoEmail.invalid && campoEmail.touched){
+                <div>Campo curso deve ser preenchido!</div>
+            }
+
+        </fieldset>
+        <br>
+
+        <button [disabled]="!meuFormulario.valid" class="botao-registrar">Cadastrar</button>
+
+    </form>
+    <div>
+        <table>
+            <tr>
+                <td>Razão Social</td>
+                <td>{{razaoSocial}}</td>
+            </tr>
+            <tr>
+                <td>CNPJ</td>
+                <td>{{cnpj}}</td>
+            </tr>
+            <tr>
+                <td>E-mail</td>
+                <td>{{email}}</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h2>Forncedores cadastrados</h2>
+        <table>
+            <tr>
+                <th>Razão Social</th>
+                <th>CNPJ</th>
+                <th>E-mail</th>
+            </tr>
+
+            @for(item of registros; track item.razaoSocial){
+                <tr>
+                    <td>{{item.razaoSocial}}</td>
+                    <td>{{item.cnpj}}</td>
+                    <td>{{item.email}}</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
