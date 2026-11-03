@@ -1,0 +1,78 @@
+<div>
+    <form #meuFormulario="ngForm" (ngSubmit)="salvar()">
+        <fieldset>
+            <legend>Nome</legend>
+            <input #campoNome="ngModel" type="text" [(ngModel)]="nome" name="nome" 
+                required minlength="3" maxlength="100">
+
+            @if(campoNome.invalid && campoNome.touched){
+                <div>Campo nome deve ser preenchido!</div>
+            }
+
+        </fieldset>
+        <fieldset>
+            <legend>Curso</legend>
+            <input #campoCurso="ngModel" type="text" [(ngModel)]="curso" name="curso" 
+                required minlength="3" maxlength="100">
+
+            @if(campoCurso.invalid && campoCurso.touched){
+                <div>Campo curso deve ser preenchido!</div>
+            }
+
+        </fieldset>
+        <fieldset>
+            <legend>E-mail</legend>
+            <input #campoEmail="ngModel" type="text" [(ngModel)]="email" name="email" 
+                required minlength="3" maxlength="100">
+
+            @if(campoEmail.invalid && campoEmail.touched){
+                <div>Campo curso deve ser preenchido!</div>
+            }
+
+        </fieldset>
+        <br>
+
+        <!-- Botão fica visivel apenas quando o formulário é valido -->
+        <!-- @if(meuFormulario.valid){
+            <button>Salvar</button>
+        } -->
+        
+        <!-- Botão fica bloqueado quando formulario não é valido -->
+        <button [disabled]="!meuFormulario.valid">Salvar</button>
+
+    </form>
+    <div>
+        <table>
+            <tr>
+                <td>Nome</td>
+                <td>{{nome}}</td>
+            </tr>
+            <tr>
+                <td>Curso</td>
+                <td>{{curso}}</td>
+            </tr>
+            <tr>
+                <td>E-mail</td>
+                <td>{{email}}</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h2>Clientes cadastrados</h2>
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>Curso</th>
+                <th>E-mail</th>
+            </tr>
+
+            @for(item of registros; track item.nome){
+                <tr>
+                    <td>{{item.nome}}</td>
+                    <td>{{item.curso}}</td>
+                    <td>{{item.email}}</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
